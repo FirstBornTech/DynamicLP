@@ -1,0 +1,6 @@
+[submodule "dlp_institutional"]
+	path = dlp_institutional
+	url = https://github.com/FirstBornTech/dlp_institutional.git
+[submodule "DLP-Backend"]
+	path = DLP-Backend
+	url = https://github.com/FirstBornTech/DLP-Backend.git

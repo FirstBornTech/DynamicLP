@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+    backend:
+      build: ./DLP-Backend/
+      ports:
+        - "8000:8000"
+        - "10001:10001"
+      environment:
+        - DB_NAME=genesis_db
+        - POSTGRES_USER=postgres 
+        - POSTGRES_PASSWORD=postgres
+      volumes: 
+        - ./backend:/DLP-Backend/backend
+      command: sh -c "cd backend && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+      
+      depends_on:
+        - db
+    db:
+      image: postgres
+      ports:
+        - "5432:5432"
+      environment:
+        - POSTGRES_PASSWORD=postgres
+      volumes:
+        - ./data/db:/var/lib/postgresql/data
+
+    dlp_institutional:
+      restart: always
+      command : npm start
+      build:
+        context: ./dlp_institutional/
+        dockerfile: Dockerfile
+      ports:
+        - "3000:3000"
+      stdin_open: true
+      depends_on:
+        - backend
