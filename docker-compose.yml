@@ -8,8 +8,8 @@ services:
         - "10001:10001"
       environment:
         - DB_NAME=genesis_db
-        - POSTGRES_USER=postgres 
-        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_USER=dlpacutestudy@dlpacute 
+        - POSTGRES_PASSWORD=Acutestudy@10
       volumes: 
         - ./backend:/DLP-Backend/backend
       command: sh -c "cd backend && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
@@ -21,7 +21,7 @@ services:
       ports:
         - "5432:5432"
       environment:
-        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_PASSWORD=Acutestudy@10
       volumes:
         - ./data/db:/var/lib/postgresql/data
 
