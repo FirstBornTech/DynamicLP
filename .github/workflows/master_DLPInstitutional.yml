@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://dlpcontainer1.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_cf4e3e5ac04b49039b852e22eadb247d }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_9f50ef65c64746ce89eed24ff978b0d5 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_5ce160ffd40d4a819317f2a1f85a9ba3 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_20319987e94c4cefbb0d25c690df3dd9 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: dlpcontainer1.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cf4e3e5ac04b49039b852e22eadb247d }}/dlpinstitutional:${{ github.sha }}
+        tags: dlpcontainer1.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5ce160ffd40d4a819317f2a1f85a9ba3 }}/app-dev:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'DLPInstitutional'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3b46c82b86f54aa495bd87bcf315e0eb }}
-        images: 'dlpcontainer1.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_cf4e3e5ac04b49039b852e22eadb247d }}/dlpinstitutional:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6e4b06927b1b44d68ceb982233f307af }}
+        images: 'dlpcontainer1.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5ce160ffd40d4a819317f2a1f85a9ba3 }}/app-dev:${{ github.sha }}'
